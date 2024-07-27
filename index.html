@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .items {
+            font-size: 20px;
+        }
+
+        .my-choice,
+        .rival {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 500px;
+            height: 230px;
+            border: 4px solid rgb(251, 172, 76);
+            border-radius: 50px;
+            padding: 10px;
+            gap: 10px;
+        }
+
+        .rival {
+            border: 4px solid rgb(131, 202, 126);
+            height: 200px;
+        }
+
+        .btn-all {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 100px;
+            border-style: none;
+            opacity: 0.5;
+            background-size: cover;
+        }
+
+        .my_paper {
+            background-image: url(./img/paper.jpg);
+        }
+
+        .my_scissors {
+            background-image: url(./img/scissors.jpg);
+        }
+
+        .my_stone {
+            background-image: url(./img/stone.jpg);
+        }
+
+        #pic img {
+            width: 100px;
+            height: 100px;
+            border-style: none;
+        }
+
+        #win_lose{
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+            font-weight: bold;
+            color: rgb(255, 85, 33);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <span class="title">猜拳遊戲</span>
+        <span class="items">請選擇剪刀or石頭or布</span>
+    </div>
+    <div class="my-choice">
+        <span class="title">自己</span>
+        <div class="btn-all">
+            <button id="btn_1" class="btn my_paper"></button>
+            <button id="btn_2" class="btn my_scissors"></button>
+            <button id="btn_3" class="btn my_stone"></button>
+        </div>
+    </div>
+    <div id="win_lose"></div>
+    <div class="rival">
+        <span class="title">對手</span>
+        <picture id="pic">
+            <img src="./img/rival.jpg" alt="">
+        </picture>
+    </div>
+
+
+    <script>
+        let img = document.querySelector('#pic>img');
+        let btn_1 = document.querySelector('#btn_1');
+        let btn_2 = document.querySelector('#btn_2');
+        let btn_3 = document.querySelector('#btn_3');
+        let win_lose = document.querySelector('#win_lose');
+
+        function reset (){
+            img.src = "./img/rival.jpg";
+            btn_1.style.opacity = 0.5;
+            btn_2.style.opacity = 0.5;
+            btn_3.style.opacity = 0.5;
+        };
+        
+        btn_1.addEventListener('click', function () {
+            reset ()
+            btn_1.style.opacity = 1;
+            let me = 1;
+            let computer = (Math.floor(Math.random() * 3 + 1));
+            console.log('我:', me, '電腦:', computer);
+            if(computer == 1){
+                img.src = "./img/paper.jpg";
+                win_lose.innerHTML = '平手';
+            }else if (computer== 2){
+                img.src = "./img/scissors.jpg";
+                win_lose.innerHTML = '你輸了';
+            }else{
+                img.src = "./img/stone.jpg";
+                win_lose.innerHTML = '你贏了!!';
+            }
+        });
+        
+        btn_2.addEventListener('click', function () {
+            reset ()
+            btn_2.style.opacity = 1;
+            let me = 2;
+            let computer = (Math.floor(Math.random() * 3 + 1));
+            console.log('我:', me, '電腦:', computer);
+            if(computer == 1){
+                img.src = "./img/paper.jpg";
+                win_lose.innerHTML = '你贏了!!';
+            }else if (computer== 2){
+                img.src = "./img/scissors.jpg";
+                win_lose.innerHTML = '平手';
+            }else{
+                img.src = "./img/stone.jpg";
+                win_lose.innerHTML = '你輸了';
+            }
+        });
+        
+        btn_3.addEventListener('click', function () {
+            reset ()
+            btn_3.style.opacity = 1;
+            let me = 3;
+            let computer = (Math.floor(Math.random() * 3 + 1));
+            console.log('我:', me, '電腦:', computer);
+            if(computer == 1){
+                img.src = "./img/paper.jpg";
+                win_lose.innerHTML = '你輸了';
+            }else if (computer== 2){
+                img.src = "./img/scissors.jpg";
+                win_lose.innerHTML = '你贏了!!';
+            }else{
+                img.src = "./img/stone.jpg";
+                win_lose.innerHTML = '平手';
+            }
+        });
+        
+        // let reset = document.querySelector('#btn_again');
+        // reset.addEventListener('click', function () {
+        //     img.src = "./img/rival.jpg";
+        //     btn_1.style.opacity = 0.5;
+        //     btn_2.style.opacity = 0.5;
+        //     btn_3.style.opacity = 0.5;
+        // });
+    </script>
+</body>
+
+</html>
